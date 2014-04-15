@@ -25,8 +25,10 @@ Widget::Widget()
 Widget& Widget::operator= (Widget const &r)
 {
 	std::cout << pb->a << std::endl;
-	delete pb;
-	pb = r.pb;
+	Bitmap *temp = pb;  //处理同一对象的情况
+	pb = new Bitmap();
+	pb->a = r.pb->a;
+	delete temp;
 	std::cout << pb->a << std::endl;
 	return *this;
 }
@@ -100,6 +102,9 @@ char& GamePlayer::operator[] (unsigned position)
 GamePlayer& GamePlayer::operator= (GamePlayer const &r)
 {
 	std::cout << this->name << " = " << r.name << std::endl;
+	char name[10];
+	strncpy(name, r.name, 10);  //处理同一对象的情况
+	strncpy(this->name, name, 10);
 	return *this;
 }
 GamePlayer::GamePlayer(GamePlayer const &r)
@@ -112,10 +117,14 @@ GamePlayer::GamePlayer(char *name)
 	std::cout << name << " : GamePlayer constructor" << std::endl;
 	strcpy(this->name, name);
 }
-GamePlayer& GamePlayer::operator*(GamePlayer const &r)
+GamePlayer GamePlayer::operator*(GamePlayer const &r)
 {
 	std::cout << this->name << " * " << r.name << std::endl; 
-	return (*this);
+	char name[10];
+	strncpy(name, this->name, 10);
+	strcat(name, r.name);
+	GamePlayer temp(name);
+	return temp;
 }
 const int  GamePlayer::NumTruns;
 
@@ -165,10 +174,10 @@ int main(int argc, char **argv)
 	}
 
 	//new和delete要匹配
-	GamePlayer *strPtr1 = new GamePlayer("strgp"); 
+/*	GamePlayer *strPtr1 = new GamePlayer("strgp"); 
 	GamePlayer *strPtr2 = new GamePlayer[100];
 	delete strPtr1;
-	delete [] strPtr2;
+	delete [] strPtr2;*/
 
 	//显示类型转换
 	UseGP ugp1(1), ugp2(2);

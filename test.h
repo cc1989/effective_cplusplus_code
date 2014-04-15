@@ -6,7 +6,7 @@ class GamePlayer
 		mutable char name[NumTruns];
 	public:
 		GamePlayer(char *name);
-		GamePlayer& operator* (GamePlayer const&r);
+		GamePlayer operator* (GamePlayer const&r);
 		GamePlayer(GamePlayer const &r);
 		GamePlayer& operator= (GamePlayer const &r);
 		const char& operator[] (unsigned position) const;
