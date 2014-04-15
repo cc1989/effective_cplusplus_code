@@ -15,7 +15,7 @@ class GamePlayer;  //类的声明
 class Widget
 {
 	public:
-		/*explicit*/ Widget(int val);
+		explicit Widget(int val);
 		~Widget();
 		Widget(const Widget &r);
 		Widget &operator= (Widget const &r);

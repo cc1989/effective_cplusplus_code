@@ -39,6 +39,7 @@ GamePlayer* Widget::GetGamePlayer()
 Widget::Widget(int val)
 {
 	pb = new Bitmap(val);
+	std::cout << val << " : Widget constructor : " << pb << std::endl;
 }
 void Widget::Swap(Widget &r)
 {
@@ -53,7 +54,7 @@ Widget::~Widget()
 }
 Widget::Widget(const Widget &r)
 {
-	std::cout << "Widget copy constructor" << std::endl;
+	std::cout << "Widget copy constructor : ";
 	pb = new Bitmap(r.pb->Get());
 	std::cout << pb->Get() << "(" << pb << ")" << " = " << r.pb->Get() << "(" << r.pb << ")" << std::endl;
 }
@@ -219,8 +220,9 @@ int main(int argc, char **argv)
 	Widget wgg(2);
 	wg = wgg;
 
-	//如果构造函数没有explicit就可以通过隐身类型转换
-	wg = 2;
+	//wg = 3;  //如果构造函数没有explicit就可以通过隐身类型转换
+	wg = Widget(3);  //只有显示的强制类型转换,因为构造函数设置了explicit
+	wg = static_cast<Widget>(3);  //只有显示的强制类型转换,因为构造函数设置了explicit
 
 	std::cout << "program endl" << std::endl;
 	return 0;
