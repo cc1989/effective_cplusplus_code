@@ -6,6 +6,7 @@ class GamePlayer
 		mutable char name[NumTruns];
 	public:
 		GamePlayer(char *name);
+		//返回对象，而不是返回引用
 		GamePlayer operator* (GamePlayer const&r);
 		GamePlayer(GamePlayer const &r);
 		GamePlayer& operator= (GamePlayer const &r);
