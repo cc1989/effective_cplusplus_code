@@ -8,6 +8,11 @@
 #include <memory>
 #include <tr1/memory>
 
+UseGP::operator int() const  //显示的类型转换
+{
+	std::cout << val << " operator int" << std::endl;
+	return val;
+}
 GamePlayer* Widget::GetGamePlayer()
 {
 	return (new GamePlayer("wgp"));
@@ -47,6 +52,7 @@ GamePlayer::~GamePlayer()
 UseGP::UseGP(int lVal)
 	:val(lVal)
 {
+	std::cout << "UseGP instructor : " << val << std::endl;
 	Show();
 }
 void HUseGP::Show()
@@ -164,6 +170,9 @@ int main(int argc, char **argv)
 	delete strPtr1;
 	delete [] strPtr2;
 
+	//显示类型转换
+	UseGP ugp1(1), ugp2(2);
+	std::cout << ugp1 + ugp2 << std::endl;
 	std::cout << "program endl" << std::endl;
 	return 0;
 }

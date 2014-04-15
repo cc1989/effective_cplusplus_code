@@ -21,10 +21,11 @@ class UseGP
 {
 	public:
 		GamePlayer& GetGP();
-		UseGP(int lVal);
+		explicit UseGP(int lVal);
+		operator int() const;
 		virtual void Show();
 	private:
-		int &val;
+		int val;
 		UseGP& operator= (UseGP const &r);  //只声明，不定义，这样就屏蔽了赋值函数
 		UseGP(UseGP const &r);  //只声明，不定义，这样就屏蔽了拷贝构造函数
 };
