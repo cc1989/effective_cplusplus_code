@@ -8,6 +8,25 @@
 #include <memory>
 #include <tr1/memory>
 
+int Bitmap::Get() const
+{
+	return a;
+}
+Bitmap::Bitmap()
+	: a(0)
+{}
+Bitmap& Bitmap::operator= (const Bitmap &r)
+{
+	a = r.a;
+	return *this;
+}
+Bitmap::Bitmap(const Bitmap &r)
+	: a(r.a)
+{}
+Bitmap::Bitmap(int val)
+{
+	a = val;
+}
 UseGP::operator int() const  //显示的类型转换
 {
 	std::cout << val << " operator int" << std::endl;
@@ -17,25 +36,38 @@ GamePlayer* Widget::GetGamePlayer()
 {
 	return (new GamePlayer("wgp"));
 }
-Widget::Widget()
+Widget::Widget(int val)
 {
-	pb = new Bitmap();
-	pb->a = 10;
+	pb = new Bitmap(val);
+}
+void Widget::Swap(Widget &r)
+{
+	//using std::swap;
+	std::swap(pb, r.pb);
+}
+Widget::~Widget()
+{
+	std::cout << pb->Get() << " : Widget deconstructor " << pb << std::endl;
+	if (pb)
+		delete pb;
+}
+Widget::Widget(const Widget &r)
+{
+	std::cout << "Widget copy constructor" << std::endl;
+	pb = new Bitmap(r.pb->Get());
+	std::cout << pb->Get() << "(" << pb << ")" << " = " << r.pb->Get() << "(" << r.pb << ")" << std::endl;
 }
 Widget& Widget::operator= (Widget const &r)
 {
-	std::cout << pb->a << std::endl;
-	Bitmap *temp = pb;  //处理同一对象的情况
-	pb = new Bitmap();
-	pb->a = r.pb->a;
-	delete temp;
-	std::cout << pb->a << std::endl;
+	Widget temp(r);  //用swap处理同一对象的情况
+	//using std::swap;
+	std::swap(*this, temp);
+	std::cout << temp.pb->Get() << "(" << temp.pb << ")" << " = " << pb->Get() << "(" << pb << ")" << std::endl;
 	return *this;
 }
 HUseGP::HUseGP(int lVal)
 	: UseGP(lVal)
-{
-}
+{}
 GamePlayer::GamePlayer()
 {}
 GamePlayer::~GamePlayer()
@@ -159,7 +191,7 @@ int main(int argc, char **argv)
 	}
 	std::cout << typeid(vec).name() << std::endl;
 
-	Widget wg;
+	Widget wg(1);
 	wg = wg;
 
 	//智能指针
@@ -182,6 +214,11 @@ int main(int argc, char **argv)
 	//显示类型转换
 	UseGP ugp1(1), ugp2(2);
 	std::cout << ugp1 + ugp2 << std::endl;
+
+	//swap的使用
+	Widget wgg(2);
+	wg = wgg;
+
 	std::cout << "program endl" << std::endl;
 	return 0;
 }

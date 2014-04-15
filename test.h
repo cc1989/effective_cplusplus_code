@@ -1,3 +1,38 @@
+#include <algorithm>
+#include <iostream>
+
+class Bitmap{
+	public:
+		Bitmap();
+		Bitmap(int val);
+		Bitmap(const Bitmap &r);
+		Bitmap& operator= (const Bitmap &r);
+		int Get() const;
+	private:
+		int a;
+};
+class GamePlayer;  //类的声明
+class Widget
+{
+	public:
+		Widget(int val);
+		~Widget();
+		Widget(const Widget &r);
+		Widget &operator= (Widget const &r);
+		static GamePlayer* GetGamePlayer();
+		void Swap(Widget &r);
+	private:
+		Bitmap *pb;  //处理包含Widget内的所有数据,这样在交换数据时可以不用整个交换数据，而只要交换指针就可以了
+};
+namespace std
+{
+	template <>
+	void swap<Widget>(Widget &a, Widget &b)
+	{
+		std::cout << "swap<Widget> call" << std::endl;
+		a.Swap(b);	
+	}
+}
 class GamePlayer
 {
 	private:
@@ -37,16 +72,4 @@ class HUseGP : public UseGP
 		void Show();
 };
 
-class Bitmap{
-	public:
-		int a;
-};
-class Widget
-{
-	public:
-		Widget();
-		Widget &operator= (Widget const &r);
-		static GamePlayer* GetGamePlayer();
-	private:
-		Bitmap *pb;
-};
+
