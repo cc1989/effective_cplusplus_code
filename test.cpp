@@ -219,6 +219,9 @@ int main(int argc, char **argv)
 	Widget wgg(2);
 	wg = wgg;
 
+	//如果构造函数没有explicit就可以通过隐身类型转换
+	wg = 2;
+
 	std::cout << "program endl" << std::endl;
 	return 0;
 }

@@ -15,7 +15,7 @@ class GamePlayer;  //类的声明
 class Widget
 {
 	public:
-		Widget(int val);
+		/*explicit*/ Widget(int val);
 		~Widget();
 		Widget(const Widget &r);
 		Widget &operator= (Widget const &r);
@@ -71,5 +71,4 @@ class HUseGP : public UseGP
 		HUseGP(int lVal);
 		void Show();
 };
-
 
