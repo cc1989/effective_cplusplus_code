@@ -59,7 +59,7 @@ class UseGP
 		GamePlayer& GetGP();
 		explicit UseGP(int lVal);
 		operator int() const;
-		virtual void Show();
+		/*virtual*/ void Show();
 	private:
 		int val;
 		UseGP& operator= (UseGP const &r);  //只声明，不定义，这样就屏蔽了赋值函数
@@ -69,6 +69,6 @@ class HUseGP : public UseGP
 {
 	public:
 		HUseGP(int lVal);
-		void Show();
+		void Show(int lVal);
 };
 

@@ -90,7 +90,7 @@ UseGP::UseGP(int lVal)
 	std::cout << "UseGP instructor : " << val << std::endl;
 	Show();
 }
-void HUseGP::Show()
+void HUseGP::Show(int lVal)
 {
 	std::cout << typeid(*this).name() << std::endl;
 }
@@ -184,6 +184,7 @@ int main(int argc, char **argv)
 
 	HUseGP ugp(1);// ugpp(ugp);
 	ugp.GetGP();
+	ugp.Show();  //子类把父类隐藏了
 	//ugpp = ugp;
 
 	{
