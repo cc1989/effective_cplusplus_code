@@ -8,7 +8,7 @@
 #include <memory>
 #include <tr1/memory>
 
-int& UseGP::GetVal()
+const int& UseGP::GetVal() const
 {
 	return val;
 }
@@ -64,6 +64,7 @@ Widget::Widget(const Widget &r)
 }
 Widget& Widget::operator= (Widget const &r)
 {
+	//copy and swap策略保证异常安全性
 	Widget temp(r);  //用swap处理同一对象的情况
 	//using std::swap;
 	std::swap(*this, temp);
@@ -190,7 +191,7 @@ int main(int argc, char **argv)
 	HUseGP ugp(1);// ugpp(ugp);
 	ugp.GetGP();
 	//ugp.Show();  //子类函数把父类同名函数隐藏了,不过参数是否相同
-	ugp.GetVal() = 2;  //返回引用违反了封装性，导致私有变量能被直接修改
+	ugp.GetVal() = 2;  //通过const来防止被修改 
 	ugp.Show(1);
 	//ugpp = ugp;
 
