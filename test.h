@@ -12,6 +12,7 @@ class Bitmap{
 		int a;
 };
 class GamePlayer;  //类的声明
+class xxxx;
 class Widget
 {
 	public:
@@ -21,6 +22,7 @@ class Widget
 		Widget &operator= (Widget const &r);
 		static GamePlayer* GetGamePlayer();
 		void Swap(Widget &r);
+		xxxx* GetXXXX();
 	private:
 		Bitmap *pb;  //处理包含Widget内的所有数据,这样在交换数据时可以不用整个交换数据，而只要交换指针就可以了
 };
@@ -60,7 +62,7 @@ class UseGP
 		explicit UseGP(int lVal);
 		operator int() const;
 		/*virtual*/ void Show();
-		int& GetVal();
+		const int& GetVal() const;
 	private:
 		int val;
 		UseGP& operator= (UseGP const &r);  //只声明，不定义，这样就屏蔽了赋值函数

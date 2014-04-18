@@ -8,6 +8,10 @@
 #include <memory>
 #include <tr1/memory>
 
+xxxx* Widget::GetXXXX()
+{
+	return NULL;
+}
 const int& UseGP::GetVal() const
 {
 	return val;
@@ -191,7 +195,7 @@ int main(int argc, char **argv)
 	HUseGP ugp(1);// ugpp(ugp);
 	ugp.GetGP();
 	//ugp.Show();  //子类函数把父类同名函数隐藏了,不过参数是否相同
-	ugp.GetVal() = 2;  //通过const来防止被修改 
+	//ugp.GetVal() = 2;  //通过const来防止被修改 
 	ugp.Show(1);
 	//ugpp = ugp;
 
