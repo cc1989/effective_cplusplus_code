@@ -8,6 +8,10 @@
 #include <memory>
 #include <tr1/memory>
 
+int& UseGP::GetVal()
+{
+	return val;
+}
 int Bitmap::Get() const
 {
 	return a;
@@ -92,6 +96,7 @@ UseGP::UseGP(int lVal)
 }
 void HUseGP::Show(int lVal)
 {
+	std::cout << "val = " << GetVal() << " ";
 	std::cout << typeid(*this).name() << std::endl;
 }
 void UseGP::Show()
@@ -184,7 +189,9 @@ int main(int argc, char **argv)
 
 	HUseGP ugp(1);// ugpp(ugp);
 	ugp.GetGP();
-	ugp.Show();  //子类把父类隐藏了
+	//ugp.Show();  //子类函数把父类同名函数隐藏了,不过参数是否相同
+	ugp.GetVal() = 2;  //返回引用违反了封装性，导致私有变量能被直接修改
+	ugp.Show(1);
 	//ugpp = ugp;
 
 	{

@@ -60,6 +60,7 @@ class UseGP
 		explicit UseGP(int lVal);
 		operator int() const;
 		/*virtual*/ void Show();
+		int& GetVal();
 	private:
 		int val;
 		UseGP& operator= (UseGP const &r);  //只声明，不定义，这样就屏蔽了赋值函数
