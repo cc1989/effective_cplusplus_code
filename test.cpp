@@ -195,7 +195,7 @@ int main(int argc, char **argv)
 
 	HUseGP ugp(1);// ugpp(ugp);
 	ugp.GetGP();
-	ugp.Show();  //子类函数把父类同名函数隐藏了,不过参数是否相同
+	ugp.UseGP::Show();  //子类函数把父类同名函数隐藏了,不过参数是否相同,为了能调用被隐藏的父类函数，必须指定该函数的作用域在父类中
 	//ugp.GetVal() = 2;  //通过const来防止被修改 
 	ugp.Show(1);
 	//ugpp = ugp;

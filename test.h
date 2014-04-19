@@ -71,7 +71,7 @@ class UseGP
 class HUseGP : public UseGP
 {
 	public:
-		using UseGP::Show;  //让父类的函数Show在子类作用域中可见
+		//using UseGP::Show;  //让父类的函数Show在子类作用域中可见
 		HUseGP(int lVal);
 		void Show(int lVal);
 };
