@@ -8,6 +8,15 @@
 #include <memory>
 #include <tr1/memory>
 
+void Rectangle::draw() const
+{
+}
+void Ellipse::draw() const
+{
+}
+void Shape::draw() const
+{
+}
 xxxx* Widget::GetXXXX()
 {
 	return NULL;
@@ -238,6 +247,7 @@ int main(int argc, char **argv)
 	wg = Widget(3);  //只有显示的强制类型转换,因为构造函数设置了explicit
 	wg = static_cast<Widget>(3);  //只有显示的强制类型转换,因为构造函数设置了explicit
 
+	Rectangle rtg;
 	std::cout << "program endl" << std::endl;
 	return 0;
 }

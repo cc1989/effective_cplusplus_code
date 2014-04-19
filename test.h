@@ -76,3 +76,17 @@ class HUseGP : public UseGP
 		void Show(int lVal);
 };
 
+class Shape
+{
+	public:
+		virtual void draw() const = 0;
+
+};
+class Rectangle : public Shape
+{
+	void draw() const;	
+};
+class Ellipse : public Shape
+{
+	void draw() const;	
+};
