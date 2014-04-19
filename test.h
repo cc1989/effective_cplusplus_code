@@ -21,7 +21,7 @@ class Widget
 		Widget(const Widget &r);
 		Widget &operator= (Widget const &r);
 		static GamePlayer* GetGamePlayer();
-		void Swap(Widget &r);
+		void swap(Widget &r);
 		xxxx* GetXXXX();
 	private:
 		Bitmap *pb;  //处理包含Widget内的所有数据,这样在交换数据时可以不用整个交换数据，而只要交换指针就可以了
@@ -32,7 +32,7 @@ namespace std
 	void swap<Widget>(Widget &a, Widget &b)
 	{
 		std::cout << "swap<Widget> call" << std::endl;
-		a.Swap(b);	
+		a.swap(b);	
 	}
 }
 class GamePlayer
@@ -71,6 +71,7 @@ class UseGP
 class HUseGP : public UseGP
 {
 	public:
+		using UseGP::Show;  //让父类的函数Show在子类作用域中可见
 		HUseGP(int lVal);
 		void Show(int lVal);
 };
