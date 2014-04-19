@@ -79,14 +79,14 @@ class HUseGP : public UseGP
 class Shape
 {
 	public:
-		virtual void draw() const = 0;
+		virtual void draw() = 0;  //函数用const和不用const修饰都是纯虚函数，不同的是加了const会要求子类实现时也要加const，导致该函数不能修改成员变量
 
 };
 class Rectangle : public Shape
 {
-	void draw() const;	
+	void draw();	
 };
 class Ellipse : public Shape
 {
-	void draw() const;	
+	void draw();	
 };

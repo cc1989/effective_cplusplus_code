@@ -8,13 +8,14 @@
 #include <memory>
 #include <tr1/memory>
 
-void Rectangle::draw() const
+void Rectangle::draw()
 {
 }
-void Ellipse::draw() const
+void Ellipse::draw()
 {
 }
-void Shape::draw() const
+//纯虚函数也可以被定义
+void Shape::draw()
 {
 }
 xxxx* Widget::GetXXXX()
