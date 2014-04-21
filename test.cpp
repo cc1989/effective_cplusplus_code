@@ -11,12 +11,12 @@
 template <typename T>
 void Rectangle<T>::draw()
 {
-	a = 1;
+	this->a = 1;
 }
 template <typename T>
 void Ellipse<T>::draw()
 {
-	a = 2;
+	this->a = 2;
 }
 
 //纯虚函数也可以被定义
