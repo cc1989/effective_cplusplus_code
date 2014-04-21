@@ -76,17 +76,24 @@ class HUseGP : public UseGP
 		void Show(int lVal);
 };
 
+template <typename T>
 class Shape
 {
 	public:
+		T a;
 		virtual void draw() = 0;  //函数用const和不用const修饰都是纯虚函数，不同的是加了const会要求子类实现时也要加const，导致该函数不能修改成员变量
 
 };
-class Rectangle : public Shape
+
+template <typename T>
+class Rectangle : public Shape<T>
 {
-	void draw();	
+	public:
+		void draw();	
 };
-class Ellipse : public Shape
+template <typename T>
+class Ellipse : public Shape<T>
 {
-	void draw();	
+	public:
+		void draw();	
 };

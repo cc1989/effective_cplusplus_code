@@ -8,14 +8,20 @@
 #include <memory>
 #include <tr1/memory>
 
-void Rectangle::draw()
+template <typename T>
+void Rectangle<T>::draw()
 {
+	a = 1;
 }
-void Ellipse::draw()
+template <typename T>
+void Ellipse<T>::draw()
 {
+	a = 2;
 }
+
 //纯虚函数也可以被定义
-void Shape::draw()
+template <typename T>
+void Shape<T>::draw()
 {
 }
 xxxx* Widget::GetXXXX()
@@ -248,7 +254,8 @@ int main(int argc, char **argv)
 	wg = Widget(3);  //只有显示的强制类型转换,因为构造函数设置了explicit
 	wg = static_cast<Widget>(3);  //只有显示的强制类型转换,因为构造函数设置了explicit
 
-	Rectangle rtg;
+	Rectangle<int> rtg;
+	rtg.draw();
 	std::cout << "program endl" << std::endl;
 	return 0;
 }
