@@ -8,15 +8,31 @@
 #include <memory>
 #include <tr1/memory>
 
+
+template <typename T>
+SmartPtr<T>::SmartPtr(T *realPtr)
+	:ptr(realPtr), count(1)
+{
+}
+template <typename T>
+SmartPtr<T>::~SmartPtr()
+{
+	count--;
+	if (!count)
+		delete ptr;
+}
+
 template <typename T>
 void Rectangle<T>::draw()
 {
 	a = 1;  
+	std::cout << "a = " << a << std::endl;
 }
 template <typename T>
 void Ellipse<T>::draw()
 {
 	a = 2;
+	std::cout << "a = " << a << std::endl;
 }
 
 //纯虚函数也可以被定义
@@ -256,6 +272,12 @@ int main(int argc, char **argv)
 
 	Rectangle<int> rtg;
 	rtg.draw();
+
+	//成员函数模板化
+	SmartPtr<UseGP> sp(new UseGP(100));
+	SmartPtr<HUseGP> sph(new HUseGP(101));
+	sp = sph;
+
 	std::cout << "program endl" << std::endl;
 	return 0;
 }

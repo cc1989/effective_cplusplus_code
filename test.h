@@ -99,3 +99,14 @@ class Ellipse : public Shape<T>
 		using Shape<T>::a;
 		void draw();	
 };
+
+template <typename T>
+class SmartPtr
+{
+	public:
+		explicit SmartPtr(T *realPtr);  //以内置的指针完成初始化
+		~SmartPtr();
+	private:
+		T *ptr;  //记录对象指针
+		int count;  //记录对象被引用的次数
+};
