@@ -101,12 +101,27 @@ class Ellipse : public Shape<T>
 };
 
 template <typename T>
+class BPtr
+{
+	public:
+		BPtr(T *lPtr = NULL);
+		~BPtr();
+		T *get();
+		bool put();
+	private:
+		T *ptr;
+		int count;
+};
+template <typename T>
 class SmartPtr
 {
 	public:
 		explicit SmartPtr(T *realPtr);  //以内置的指针完成初始化
+		//template <typename U>
+		SmartPtr& operator=(SmartPtr<T> const& r);
+		//template <typename U>
+		SmartPtr(SmartPtr<T> const& r);
 		~SmartPtr();
 	private:
-		T *ptr;  //记录对象指针
-		int count;  //记录对象被引用的次数
+		BPtr<T> *imPtr;
 };

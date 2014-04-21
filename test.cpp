@@ -10,16 +10,56 @@
 
 
 template <typename T>
-SmartPtr<T>::SmartPtr(T *realPtr)
-	:ptr(realPtr), count(1)
+bool BPtr<T>::put()
 {
+	count--;
+	if (count == 0)
+	{
+		delete ptr;
+		return false;
+	}
+	return true;
+}
+template <typename T>
+T* BPtr<T>::get()
+{
+	count++;
+	return ptr;
+}
+template <typename T>
+BPtr<T>::~BPtr()
+{
+}
+template <typename T>
+BPtr<T>::BPtr(T *lPtr)
+	:ptr(lPtr), count(0)
+{}
+template <typename T>
+SmartPtr<T>::SmartPtr(SmartPtr<T> const& r)
+{
+	imPtr = r.imPtr;
+	imPtr->get();
+}
+template <typename T>
+SmartPtr<T>& SmartPtr<T>::operator=(SmartPtr<T> const& r)
+{
+	SmartPtr<T> temp(*this);	
+	imPtr->put();
+	imPtr = r.imPtr;
+	imPtr->get();
+	return *this;
+}
+template <typename T>
+SmartPtr<T>::SmartPtr(T *realPtr)
+{
+	imPtr = new BPtr<T>(realPtr);
+	imPtr->get();
 }
 template <typename T>
 SmartPtr<T>::~SmartPtr()
 {
-	count--;
-	if (!count)
-		delete ptr;
+	if (imPtr->put() == false)
+		delete imPtr;
 }
 
 template <typename T>
