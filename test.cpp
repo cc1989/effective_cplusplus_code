@@ -11,12 +11,12 @@
 template <typename T>
 void Rectangle<T>::draw()
 {
-	this->a = 1;
+	Shape<T>::a = 1;  //强制指定a所在的作用域
 }
 template <typename T>
 void Ellipse<T>::draw()
 {
-	this->a = 2;
+	Shape<T>::a = 2;
 }
 
 //纯虚函数也可以被定义
