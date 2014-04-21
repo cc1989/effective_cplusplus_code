@@ -89,11 +89,13 @@ template <typename T>
 class Rectangle : public Shape<T>
 {
 	public:
+		using Shape<T>::a;  //声明a出现在templated的父类中
 		void draw();	
 };
 template <typename T>
 class Ellipse : public Shape<T>
 {
 	public:
+		using Shape<T>::a;
 		void draw();	
 };
