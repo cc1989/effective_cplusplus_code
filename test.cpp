@@ -7,6 +7,7 @@
 #include <typeinfo>
 #include <memory>
 #include <tr1/memory>
+#include <hash_map>
 
 
 template <typename T>
@@ -337,7 +338,13 @@ int main(int argc, char **argv)
 	std::cout << Factorial<10>::value << std::endl;
 
 	std::set_new_handler(outofMem);
-	int *pBigDataArray = new int[10000000000L];
+	int *pBigDataArray = new int[1000000000L];
+	
+	//hash_map
+	__gnu_cxx::hash_map<int, int> intHash;
+	intHash[0] = 1;
+	intHash[1] = 2;
+	std::cout << "hash 0 = " << intHash[0] << ", hash 1 = " << intHash[1] << std::endl;
 	std::cout << "program endl" << std::endl;
 	return 0;
 }
