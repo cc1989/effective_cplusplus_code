@@ -329,6 +329,7 @@ int main(int argc, char **argv)
 	SmartPtr<HUseGP> sph(new HUseGP(101));
 	sp = sph;
 
+	std::cout << Factorial<10>::value << std::endl;
 	std::cout << "program endl" << std::endl;
 	return 0;
 }
