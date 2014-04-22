@@ -260,6 +260,11 @@ void Show(GamePlayer *gp)
 	std::cout << "GamePlayer Show" << std::endl;
 	delete gp;
 }
+void outofMem()
+{
+	std::cerr << "无法满足内存请求" << std::endl;
+	std::abort();
+}
 int main(int argc, char **argv)
 {
 	std::vector<int> vec;
@@ -330,6 +335,9 @@ int main(int argc, char **argv)
 	sp = sph;
 
 	std::cout << Factorial<10>::value << std::endl;
+
+	std::set_new_handler(outofMem);
+	int *pBigDataArray = new int[10000000000L];
 	std::cout << "program endl" << std::endl;
 	return 0;
 }
