@@ -117,10 +117,11 @@ class SmartPtr
 {
 	public:
 		explicit SmartPtr(T *realPtr);  //以内置的指针完成初始化
-		//template <typename U>
-		SmartPtr& operator=(SmartPtr<T> const& r);
-		//template <typename U>
-		SmartPtr(SmartPtr<T> const& r);
+		template <typename U>
+		SmartPtr<T>& operator=(SmartPtr<U> & r);
+		template <typename U>
+		SmartPtr(SmartPtr<U> const& r);
+		BPtr<T>* GetPtr();
 		~SmartPtr();
 	private:
 		BPtr<T> *imPtr;

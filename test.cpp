@@ -35,18 +35,29 @@ BPtr<T>::BPtr(T *lPtr)
 	:ptr(lPtr), count(0)
 {}
 template <typename T>
-SmartPtr<T>::SmartPtr(SmartPtr<T> const& r)
+template <typename U>
+SmartPtr<T>::SmartPtr(SmartPtr<U> const& r)
 {
-	imPtr = r.imPtr;
+	imPtr = (BPtr<T> *)r.GetPtr();
 	imPtr->get();
 }
 template <typename T>
-SmartPtr<T>& SmartPtr<T>::operator=(SmartPtr<T> const& r)
+BPtr<T>* SmartPtr<T>::GetPtr()
 {
-	SmartPtr<T> temp(*this);	
-	imPtr->put();
-	imPtr = r.imPtr;
-	imPtr->get();
+	return imPtr;
+}
+template <typename T>
+template <typename U>
+SmartPtr<T>& SmartPtr<T>::operator=(SmartPtr<U> & r)
+{
+	if (imPtr != (BPtr<T> *)r.GetPtr())
+	{
+		SmartPtr<T> temp(*this);	
+		imPtr->put();
+		imPtr = (BPtr<T> *)r.GetPtr();
+		//imPtr = (BPtr<T> *)r.imPtr;
+		imPtr->get();
+	}
 	return *this;
 }
 template <typename T>
