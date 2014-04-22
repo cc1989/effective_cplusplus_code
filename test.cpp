@@ -345,6 +345,12 @@ int main(int argc, char **argv)
 	intHash[0] = 1;
 	intHash[1] = 2;
 	std::cout << "hash 0 = " << intHash[0] << ", hash 1 = " << intHash[1] << std::endl;
+	//字符串hash
+	__gnu_cxx::hash_map<const char *, int, CharHash, CharLess> charHash;
+
+	charHash["a"] = 123;
+	charHash["b"] = 456;
+	std::cout << "hash a = " << charHash["a"] << ", hash b = " << charHash["b"] << std::endl;
 	std::cout << "program endl" << std::endl;
 	return 0;
 }

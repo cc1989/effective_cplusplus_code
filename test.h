@@ -1,5 +1,7 @@
 #include <algorithm>
 #include <iostream>
+#include <cstring>
+#include <hash_map>
 
 class Bitmap{
 	public:
@@ -137,3 +139,21 @@ struct Factorial<0>
 {
 	enum{value = 1};
 };
+//仿函数
+struct CharLess 
+{
+	public:
+		bool operator()(const char*  _Left, const char* _Right) const
+		{
+			return (strcmp(_Left, _Right) == 0);
+		}
+};
+//产生hash
+struct CharHash
+{
+	size_t operator()(const char* str) const
+	{
+		return __gnu_cxx::__stl_hash_string(str);	
+	}
+};
+
