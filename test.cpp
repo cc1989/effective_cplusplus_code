@@ -351,6 +351,15 @@ int main(int argc, char **argv)
 	charHash["a"] = 123;
 	charHash["b"] = 456;
 	std::cout << "hash a = " << charHash["a"] << ", hash b = " << charHash["b"] << std::endl;
+
+//窥探编译器对标准c++的支持
+#if defined(__sgi)
+	std::cout << "__sgi" << std::endl;
+#endif
+#if defined(__GNUC__)
+	std::cout << "__GNUC__" << std::endl;
+	std::cout << __GNUC__ << " " << __GNUC_MINOR__ << std::endl;
+#endif
 	std::cout << "program endl" << std::endl;
 	return 0;
 }
