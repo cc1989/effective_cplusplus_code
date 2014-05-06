@@ -157,3 +157,10 @@ struct CharHash
 	}
 };
 
+//测试__STL_STATIC_TEMPLATE_MEMBER_BUG
+template <typename T>
+class testClass
+{
+	public:
+		static int _data;
+};

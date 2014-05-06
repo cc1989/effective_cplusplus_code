@@ -9,6 +9,10 @@
 #include <tr1/memory>
 #include <hash_map>
 
+template<>
+int testClass<int>::_data = 1;
+template<>
+int testClass<char>::_data = 2;
 
 template <typename T>
 bool BPtr<T>::put()
@@ -360,6 +364,16 @@ int main(int argc, char **argv)
 	std::cout << "__GNUC__" << std::endl;
 	std::cout << __GNUC__ << " " << __GNUC_MINOR__ << std::endl;
 #endif
+	std::cout << testClass<int>::_data << std::endl;
+	std::cout << testClass<char>::_data << std::endl;
+	testClass<int> obji1, obji2;
+	testClass<char> objc1, objc2;
+	std::cout << obji1._data << std::endl;
+	std::cout << obji2._data << std::endl;
+	std::cout << objc1._data << std::endl;
+	std::cout << objc2._data << std::endl;
+
+	
 	std::cout << "program endl" << std::endl;
 	return 0;
 }
