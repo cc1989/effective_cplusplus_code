@@ -373,6 +373,9 @@ int main(int argc, char **argv)
 	std::cout << objc1._data << std::endl;
 	std::cout << objc2._data << std::endl;
 
+	testClass2<int, char> obj1;
+	testClass2<int*, char*> obj2;
+	testClass2<const int*, char*> obj3;
 	
 	std::cout << "program endl" << std::endl;
 	return 0;
