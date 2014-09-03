@@ -270,6 +270,12 @@ void outofMem()
 	std::cerr << "无法满足内存请求" << std::endl;
 	std::abort();
 }
+
+UseA::UseA(const A& ca) 
+        //:a(ca)  //只调用copy构造函数
+{
+        a = ca;  //先调用default构造函数，然后调用operator=函数
+}
 int main(int argc, char **argv)
 {
 	std::vector<int> vec;
@@ -376,7 +382,13 @@ int main(int argc, char **argv)
 	testClass2<int, char> obj1;
 	testClass2<int*, char*> obj2;
 	testClass2<const int*, char*> obj3;
+
+	MyVector<int> x, y;
+	std::swap(x, y);
 	
+     //初始化列表和赋值的区别
+    A a;
+    UseA ua(a);
 	std::cout << "program endl" << std::endl;
 	return 0;
 }

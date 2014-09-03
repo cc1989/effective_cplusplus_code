@@ -184,3 +184,36 @@ class testClass2<const T*, T*>
 	public:
 	testClass2(){std::cout << "const T*, T*" << std::endl;}
 };
+class MyAlloc
+{
+};
+template <class T, class Alloc = MyAlloc>
+class MyVector
+{
+	public:
+		void swap(MyVector<T, Alloc>&){std::cout << "swap()" << std::endl;}
+};
+
+namespace std
+{
+//#ifdef __STL_FUNCTION_TMPL_PARTIAL_ORDER
+template <class T, class Alloc>
+void swap(MyVector<T, Alloc>& x, MyVector<T,	Alloc>& y){
+	x.swap(y);
+}
+//#endif
+}
+class A
+{
+    public:
+            A() { std::cout << "A default constructor" << std::endl; }
+                A(const A& a) { std::cout << "A copy constructor" << std::endl; }
+                    A& operator=(const A& a) { std::cout << "a operator=" << std::endl; }
+};
+class UseA
+{
+    public:
+            UseA(const A& ca);
+    private:
+                A a;
+};
