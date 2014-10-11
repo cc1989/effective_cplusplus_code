@@ -16,7 +16,7 @@ public:
         :ptr(t), count(1)
     {}
     T* get() { count++; return ptr; }
-    size_t put() { count--; if (!count) {delete ptr; ptr = NULL;} return count; }
+    size_t put() { count--;  return count; }
     ~obj() { if (ptr) delete ptr; }
 private:
     size_t count;
@@ -42,6 +42,7 @@ public:
     }
     ~shared_ptr()
     {
+        cout << "shared_ptr destrctor" << endl;
         if (pObj->put() == 0) 
             delete pObj;
     }
